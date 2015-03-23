@@ -1,0 +1,24 @@
+<h1>Page of <%= @user.email %></h1>
+
+<br>
+<br>
+<table width="100%">
+  <tr>
+    <th>Monster</th>
+    <th>Nickname</th>
+    <th>Description</th>
+    <th>HP</th>
+  </tr>
+  <% @user.user_creatures.each do |user_creature| %>
+    <tr>
+      <td><%= user_creature.creature.name %><td>
+      <td><%= user_creature.nickname %><td>
+      <td><%= user_creature.creature.description %><td>
+      <td><%= user_creature.hp %><td>
+    <tr>
+  <% end %>
+</table>
+
+<br>
+
+<p><%= link_to "Back", trade_center_path %></p>

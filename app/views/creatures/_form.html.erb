@@ -1,0 +1,12 @@
+<%= simple_nested_form_for(@creature) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <br>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+
+<% end %>

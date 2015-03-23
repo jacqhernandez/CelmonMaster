@@ -1,0 +1,33 @@
+<h1>My Game</h1>
+<p>Game of <%= current_user.email %></p>
+
+<strong>Playing Monster</strong>: <%= current_user.user_playing_creature %><br>
+
+
+<%= link_to "Select Playing Monster", new_user_playing_creature_path %>
+
+<br>
+<br>
+
+<strong>Monsters</strong>: <br><br>
+<table width="100%">
+  <tr>
+    <th>Creature</th>
+    <th>Nickname</th>
+    <th>Description</th>
+    <th>HP</th>
+  </tr>
+  <% current_user.user_creatures.each do |user_creature| %>
+    <tr>
+      <td><%= user_creature.creature.name %><td>
+      <td><%= user_creature.nickname %><td>
+      <td><%= user_creature.creature.description %><td>
+      <td><%= user_creature.hp %><td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "New Monster", new_user_creature_path %> //testing purposes
+
+<br>
+<br>

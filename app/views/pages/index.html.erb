@@ -1,0 +1,7 @@
+<h1>Welcome to Celmon!</h1>
+<% if user_signed_in? %>
+  <%= link_to "My Game", games_path %>
+  <p><%= link_to "Trading Centre", trade_center_path %></p>
+<% else %>
+  <p><%= link_to "Login", new_user_session_path %></p>
+<% end %>
