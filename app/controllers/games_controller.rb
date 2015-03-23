@@ -4,6 +4,7 @@ class GamesController < ApplicationController
   
   def index
     @games = Game.all
+    @locations = Location.all
     render(:template => "games/index")
   end
 
@@ -41,9 +42,8 @@ class GamesController < ApplicationController
     params.require(:game).permit!
   end
 
-  #def show
-  #  @games = Game.all
-  #  render :template => "games/show"
-  #end
+  def show_monsters
+    render :template => "games/show"
+  end
 
 end

@@ -5,39 +5,37 @@
 <br><br>
 
 <% if current_user.user_playing_creature %>
-  <strong>Playing Monster</strong>
+  <%= link_to "Select Another Playing Monster", edit_user_playing_creature_path(current_user.user_playing_creature.id) %>
+  <br><br><strong>Playing Monster</strong>
   <br>Monster: <%= current_user.user_playing_creature.user_creature.creature %>
   <br>Nickname: <%= current_user.user_playing_creature.user_creature.nickname %>
-  <br><br><%= link_to "Select Another Playing Monster", edit_user_playing_creature_path(current_user.user_playing_creature.id) %>
+  <br>HP: <%= current_user.user_playing_creature.user_creature.hp %>
+  <br>GPS Location: <%= current_user.user_playing_creature.location_id %>
+  <% @locations.each do |location| %>
+    <% if location.gps == current_user.user_playing_creature.location_id %>
+      <p>
+      A wild creature appears!
+      <br>Opponent: <%= location.creature.name %>
+      <br>Location: <%= location.name %>
+      <br><br><%= link_to "Fight", fight_path(current_user.user_playing_creature.id) %> | 
+      <%= link_to "Flee", walk_path(current_user.user_playing_creature.id) %>
+      </p>
+    <% end %>
+  <% end %>
+  <br><br><%= link_to "Walk", walk_path(current_user.user_playing_creature.id) %>
+
 <% else %>
   <strong>Playing Monster</strong>
   <br><br><%= link_to "Select Playing Monster", new_user_playing_creature_path %>
 <% end %>
 
 <br><br>
+
+
 ---------------------------
 <br><br>
 
-<strong>Monsters</strong>: <br><br>
-<table width="100%">
-  <tr>
-    <th>Creature</th>
-    <th>Nickname</th>
-    <th>Description</th>
-    <th>HP</th>
-  </tr>
-  <% current_user.user_creatures.each do |user_creature| %>
-    <tr>
-      <td><%= user_creature.creature.name %><td>
-      <td><%= user_creature.nickname %><td>
-      <td><%= user_creature.creature.description %><td>
-      <td><%= user_creature.hp %><td>
-    </tr>
-  <% end %>
-</table>
-
-<br>
-<%= link_to "New Monster", new_user_creature_path %> //testing purposes
+<%= link_to "Monster Party", show_monsters_path %>
 
 <br>
 <br>

@@ -21,6 +21,7 @@ before_filter :authenticate_user!, except: [:index, :show]
 
   def edit
     @user_playing_creature = UserPlayingCreature.find(params[:id])
+    @user_creatures = current_user.user_creatures
     render :template => "user_playing_creatures/edit"
   end
 
@@ -47,5 +48,16 @@ before_filter :authenticate_user!, except: [:index, :show]
   
   def user_playing_creature_params
     params.require(:user_playing_creature).permit!
+  end
+
+  def walk
+    @user_playing_creature = UserPlayingCreature.find(params[:id])
+    @user_playing_creature.user = current_user
+    @user_playing_creature.walk!
+    redirect_to games_path
+  end
+  
+  def fight
+    render :template => "user_playing_creatures/fight"
   end
 end

@@ -6,8 +6,12 @@ Rails.application.routes.draw do
   resources :creatures
   resources :user_creatures
   resources :user_playing_creatures
+  resources :locations
   get '/trade_center', to: "pages#trade_center", as: :trade_center
   get '/trade_center/show_user/:id', to: "pages#show_other_users", as: :show_other_users
+  get '/walk/:id', to: "user_playing_creatures#walk", as: :walk
+  get '/fight/:id', to: "user_playing_creatures#fight", as: :fight
+  get '/monster_party', to: "games#show_monsters", as: :show_monsters
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
