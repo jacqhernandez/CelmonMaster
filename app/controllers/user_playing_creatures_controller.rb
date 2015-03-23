@@ -26,6 +26,7 @@ before_filter :authenticate_user!, except: [:index, :show]
 
   def update
     @user_playing_creature = UserPlayingCreature.find(params[:id])
+    @user_creatures = current_user.user_creatures
     @user_playing_creature.user = current_user
     if @user_playing_creature.update(user_playing_creature_params)
       redirect_to games_path

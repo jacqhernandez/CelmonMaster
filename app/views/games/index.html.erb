@@ -1,13 +1,22 @@
 <h1>My Game</h1>
-<p>Game of <%= current_user.email %></p>
+<p>Game of <%= current_user.username %></p>
 
-<strong>Playing Monster</strong>: <%= current_user.user_playing_creature %><br>
+---------------------------
+<br><br>
 
+<% if current_user.user_playing_creature %>
+  <strong>Playing Monster</strong>
+  <br>Monster: <%= current_user.user_playing_creature.user_creature.creature %>
+  <br>Nickname: <%= current_user.user_playing_creature.user_creature.nickname %>
+  <br><br><%= link_to "Select Another Playing Monster", edit_user_playing_creature_path(current_user.user_playing_creature.id) %>
+<% else %>
+  <strong>Playing Monster</strong>
+  <br><br><%= link_to "Select Playing Monster", new_user_playing_creature_path %>
+<% end %>
 
-<%= link_to "Select Playing Monster", new_user_playing_creature_path %>
-
-<br>
-<br>
+<br><br>
+---------------------------
+<br><br>
 
 <strong>Monsters</strong>: <br><br>
 <table width="100%">
@@ -27,6 +36,7 @@
   <% end %>
 </table>
 
+<br>
 <%= link_to "New Monster", new_user_creature_path %> //testing purposes
 
 <br>
